@@ -31,7 +31,7 @@ public class MortgageCalculatorPageAsserter {
     @Step("Verify that slider has been moved left from [{0}] to [{1}]")
     public void assertSliderWidgetMovedLeft(Point beginPoint, Point endPoint) {
         // Asserting that actual slider position has been changed
-        assertTrue(beginPoint.getX() > endPoint.getX(), "Slider has not been moved to the right");
+        assertTrue(beginPoint.getX() > endPoint.getX(), "Slider has not been moved to the left");
         assertEquals(beginPoint.getY(), endPoint.getY(), "Slider has been moved by vertical axis but should not be");
     }
 

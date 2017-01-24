@@ -10,7 +10,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UIMapBeanPostProcessor implements BeanPostProcessor {
+public class PageObjectBeanPostProcessor implements BeanPostProcessor {
 
     @Autowired
     private WebDriver driver;
