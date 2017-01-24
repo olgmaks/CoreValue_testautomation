@@ -35,7 +35,7 @@ public class MortgageCalculatorPageAsserter {
         assertEquals(beginPoint.getY(), endPoint.getY(), "Slider has been moved by vertical axis but should not be");
     }
 
-    @Step("Verify that calculated payment value equal to [{0}]")
+    @Step("Verify that calculated payment value equals to [{0}]")
     public void assertCalculatedPaymentValue(double value) {
         // Asserting that actual slider position has been changed
         assertEquals(mortgagePaymentCalculatorPage.getCalculationResult(), value,
