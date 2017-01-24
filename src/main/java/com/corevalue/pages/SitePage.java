@@ -1,15 +1,14 @@
 package com.corevalue.pages;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
+
+import ru.yandex.qatools.allure.annotations.Step;
 
 @Component
 public class SitePage extends PageObject {
 
-    private static final Logger LOG = Logger.getLogger(HomePage.class);
-
+    @Step("Navigating to home page ...")
     public HomePage gotoHomePage() {
-        LOG.info(String.format("Navigating to home page URL [%s]", appProperties.getBaseUrl()));
         webDriver.navigate().to(appProperties.getBaseUrl());
         return getBean(HomePage.class);
     }

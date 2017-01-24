@@ -1,6 +1,8 @@
 package com.corevalue.pages;
 
-import org.apache.log4j.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -9,13 +11,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.stereotype.Component;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import ru.yandex.qatools.allure.annotations.Step;
 
 @Component
 public class MortgagePaymentCalculatorPage extends PageObject {
-
-    private static final Logger LOG = Logger.getLogger(HomePage.class);
 
     @FindBy(id = "Amortissement")
     private WebElement amortizationSelect;
@@ -32,27 +31,27 @@ public class MortgagePaymentCalculatorPage extends PageObject {
     @FindBy(id = "paiement-resultats")
     private WebElement calculationResultLabel;
 
+    @Step("Select amortization [{0}] years")
     public MortgagePaymentCalculatorPage selectAmortization(int amortization) {
-        LOG.info(String.format("Select amortization [%s]", amortization));
         new Select(amortizationSelect).selectByValue(String.valueOf(amortization));
         return this;
     }
 
+    @Step("Select payment frequency [{0}]")
     public MortgagePaymentCalculatorPage selectPaymentFrequency(String paymentFrequency) {
-        LOG.info(String.format("Select payment frequency [%s]", paymentFrequency));
         new Select(paymentFrequencySelect).selectByVisibleText(paymentFrequency);
         return this;
     }
 
+    @Step("Set Interest Rate Input [{0}] percents")
     public MortgagePaymentCalculatorPage setInterestRateInput(double rate) {
-        LOG.info(String.format("Set Interest Rate Input [%s]", rate));
         interestRateInput.clear();
         interestRateInput.sendKeys(String.valueOf(rate));
         return this;
     }
 
+    @Step("Calculating Payments ...")
     public MortgagePaymentCalculatorPage calculate() {
-        LOG.info("Calculating ...");
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", calculateButton);
         newWait().until(ExpectedConditions.textToBePresentInElement(calculationResultLabel, "$"));
         return this;
